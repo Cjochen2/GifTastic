@@ -23,10 +23,11 @@ function renderButtons() {
     renderButtons();
   });
 
+  $(document).on('click', '.villain-btn', displayVillain)
+
   renderButtons();
 
-
-
+function displayVillain(){
 $("button").on("click", function () {
 
     var topic = $(this).attr("data-name");
@@ -61,5 +62,5 @@ $("button").on("click", function () {
         }
       });
   });
-  
+};
   
