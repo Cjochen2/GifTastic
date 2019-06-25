@@ -1,6 +1,6 @@
-var topics = ['The Joker', 'The Penguin', 'Cat Woman', 'The Riddler', 'Loki', 'Thanos', 'Venom', 'Lex Luthor', 'Ajax', 'Deathstroke'];
+var topics = ['The Joker', 'The Penguin', 'Cat Woman', 'The Riddler', 'Loki', 'Thanos', 'Venom', 'Lex Luthor', 'Deathstroke'];
 
-function renderButtons() {
+function renderButtons() {  
 
     $("#buttons-view").empty();
 
@@ -12,6 +12,42 @@ function renderButtons() {
       a.text(topics[i]);
       $("#buttons-view").append(a);
     }
+
+    $("button").on("click", function () {
+
+        var topic = $(this).attr("data-name");
+    
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+          topic + "&api_key=tKevWU5Ykf52GJn5Joatr6xVqrNNQIM5&limit=10";
+    
+        $.ajax({
+          url: queryURL,
+          method: "GET"
+        })
+          .then(function (response) {
+            $('#gifs-appear-here').empty();
+            var results = response.data;
+    
+            for (var i = 0; i < results.length; i++) {
+            
+                var gifDiv = $("<div id='gif-size'>");
+    
+                var rating = results[i].rating;
+    
+                var p = $("<p>").text("Rating: " + rating);
+    
+                var personImage = $("<img>");
+    
+                personImage.attr("src", results[i].images.fixed_height.url);
+    
+                gifDiv.append(p);
+                gifDiv.append(personImage);
+    
+                $("#gifs-appear-here").prepend(gifDiv);
+                console.log(response);
+            }
+          });
+      });
   }
 
   $("#add-button").on("click", function(event) {
@@ -23,44 +59,10 @@ function renderButtons() {
     renderButtons();
   });
 
-  $(document).on('click', '.villain-btn', displayVillain)
+  
 
   renderButtons();
 
-function displayVillain(){
-$("button").on("click", function () {
 
-    var topic = $(this).attr("data-name");
 
-    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-      topic + "&api_key=tKevWU5Ykf52GJn5Joatr6xVqrNNQIM5&limit=10";
-
-    $.ajax({
-      url: queryURL,
-      method: "GET"
-    })
-      .then(function (response) {
-
-        var results = response.data;
-
-        for (var i = 0; i < results.length; i++) {
-        
-            var gifDiv = $("<div>");
-
-            var rating = results[i].rating;
-
-            var p = $("<p>").text("Rating: " + rating);
-
-            var personImage = $("<img>");
-
-            personImage.attr("src", results[i].images.fixed_height.url);
-
-            gifDiv.append(p);
-            gifDiv.append(personImage);
-
-            $("#gifs-appear-here").prepend(gifDiv);
-        }
-      });
-  });
-};
   
