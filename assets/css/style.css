@@ -5,6 +5,36 @@ input {
       margin: 10px;
     }
 
+body {
+    background-image: url(../images/joker.png);
+    color: rgb(129, 31, 31);
+}    
+
+h1 {
+    text-align: center;
+    color:  rgb(129, 31, 31);
+    text-shadow: 1px 1px white;
+    font-size: 75px;
+}
+
 #gif-size{
     display: inline-block;
 }    
+
+label {
+    font-size: 30px;
+    
+}
+button:hover {
+    background-color:  rgb(129, 31, 31);
+    outline: 2px solid  white;
+}
+.gif:hover {
+    outline: 4px solid  rgb(129, 31, 31);    
+}
+
+#add-button:hover{
+    color: rgb(129, 31, 31);
+    background-color:  black;
+    border: white;
+}
