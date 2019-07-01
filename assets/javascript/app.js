@@ -45,44 +45,9 @@ $("body").on("click", "button", function () {
   var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
     topic + "&api_key=tKevWU5Ykf52GJn5Joatr6xVqrNNQIM5&limit=10";
 
-  var queryURL1 = "http://api.giphy.com/v1/gifs/search?q=" +
-    topic + "&api_key=tKevWU5Ykf52GJn5Joatr6xVqrNNQIM5&limit=10";
 
   $.ajax({
-    url: queryURL,
-    method: "GET"
-  })
-    .then(function (response) {
-      $('#gifs-appear-here').empty();
-      var results = response.data;
-
-      for (var i = 0; i < results.length; i++) {
-
-        var gifDiv = $("<div id='gif-size'>");
-
-        var rating = results[i].rating;
-
-        var p = $("<p>").text("Rating: " + rating);
-
-        var personImage = $("<img>");
-
-        personImage.attr({ 'src': results[i].images.fixed_height_still.url, 'data-still': results[i].images.fixed_height_still.url, 'data-animate': results[i].images.fixed_height.url, 'data-state': 'still', 'class': 'gif' });
-
-        gifDiv.append(p);
-        gifDiv.append(personImage);
-
-        $("#gifs-appear-here").prepend(gifDiv);
-        console.log(response);
-
-
-
-
-
-      }
-    });
-
-  $.ajax({
-    url: queryURL1,
+    url: queryURL+'&',
     method: "GET"
   })
     .then(function (response) {
