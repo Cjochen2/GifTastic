@@ -50,6 +50,7 @@ $("body").on("click", "button", function () {
     url: queryURL+'&',
     method: "GET"
   })
+
     .then(function (response) {
       $('#gifs-appear-here').empty();
       var results = response.data;
@@ -76,9 +77,10 @@ $("body").on("click", "button", function () {
 
 
 
-      }
+      } 
     });
 });
+
 
 renderButtons();
 
